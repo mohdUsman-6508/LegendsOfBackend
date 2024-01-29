@@ -1,0 +1,17 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "A step towards backend journey",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "nodemon",
+    "js",
+    "node"
+  ],
+  "author": "mohammad usman",
+  "license": "ISC"
+}
