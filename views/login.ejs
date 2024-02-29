@@ -67,6 +67,11 @@
       button:hover {
         background-color: #0056b3;
       }
+
+      p {
+        color: red;
+        font-weight: 800;
+      }
     </style>
   </head>
   <body>
@@ -79,13 +84,14 @@
         </div>
         <div class="form-group">
           <label for="email">Your Email:</label>
-          <input type="email" id="email" name="email" required />
+          <input type="email" id="email" name="email" required "/>
         </div>
 
         <div class="form-group">
           <label for="password">Your Password:</label>
           <input type="password" id="password" name="password" required />
         </div>
+        <p><%= locals.message %></p>
         <button type="submit">Login</button>
       </form>
     </div>

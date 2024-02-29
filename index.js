@@ -63,6 +63,7 @@ import path from "path";
 import mongoose from "mongoose";
 import cookieParser from "cookie-parser";
 import jwt from "jsonwebtoken";
+import bcrypt from "bcrypt";
 const app = express();
 
 // var user = [
@@ -168,11 +169,12 @@ app.post("/login", async (req, res) => {
     console.log("account does not exist!");
     return res.redirect("/register/form");
   }
+  const isMatch = await bcrypt.compare(password, user.password);
+  if (!isMatch) return res.render("login", { message: "Incorrect Password" });
 
   // user = await User.create({ name, email, password });
 
   const token = jwt.sign({ _id: user._id }, "secretsabc"); /// token bana rahe he security purpose ke liye
-
   res.cookie("token", token, {
     httpOnly: true,
     expires: new Date(Date.now() + 120 * 1000),
@@ -191,7 +193,8 @@ app.post("/register", async (req, res) => {
   if (user) {
     return res.redirect("/");
   }
-  await User.create({ name, email, password });
+  const hashedPassword = await bcrypt.hash(password, 10); ///// password ko hash karke store kara rahe he jo jaruri honda si
+  await User.create({ name, email, password: hashedPassword });
   res.redirect("/");
 });
 
