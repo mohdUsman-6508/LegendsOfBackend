@@ -13,3 +13,5 @@ folder/
 
 # Ignore files in a specific directory
 /node_modules/
+
+*.env
