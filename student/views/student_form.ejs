@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>new student</title>
+    <style>
+      /* style.css */
+
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        margin: 0;
+        padding: 0;
+      }
+
+      .container {
+        width: 60%;
+        margin: 50px auto;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      form {
+        max-width: 400px;
+        margin: 0 auto;
+      }
+
+      input[type="text"] {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+
+      button {
+        width: 100%;
+        background-color: #4caf50;
+        color: #fff;
+        border: none;
+        padding: 15px 20px;
+        cursor: pointer;
+        border-radius: 5px;
+      }
+
+      button:hover {
+        background-color: #45a049;
+      }
+
+      button:focus {
+        outline: none;
+      }
+
+      input[type="text"]:focus {
+        outline: none;
+        border: 1px solid #4caf50;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <form method="post" action="/new">
+        <input type="text" name="name" placeholder="Name" />
+        <input type="text" name="faculty_no" placeholder="Faculty Number" />
+        <input
+          type="text"
+          name="enrollment_no"
+          placeholder="Enrollment Number"
+        />
+        <input type="text" name="course" placeholder="Course" />
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  </body>
+</html>
