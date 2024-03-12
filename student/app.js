@@ -28,7 +28,10 @@ mongoose
 const studentSchema = new mongoose.Schema({
   name: String,
   faculty_no: String,
-  enrollment_no: String,
+  enrollment_no: {
+    type: String,
+    unique: true,
+  },
   course: String,
 });
 
@@ -97,6 +100,65 @@ app.put("/update", async (req, res) => {
     });
 });
 
+//delete student
+app.delete("/delete", async (req, res) => {
+  try {
+    let { enrollment_no } = req.body;
+    let enrolledStudent = await Student.findOne({ enrollment_no });
+    if (enrolledStudent) {
+      let student = await Student.deleteOne({ enrollment_no });
+      res.status(201).json({
+        success: true,
+        message: "student removed!",
+      });
+    } else
+      res.status(404).json({
+        success: false,
+        message: "student not found!",
+      });
+  } catch (err) {
+    res.json({
+      success: false,
+      message: err,
+    });
+  }
+});
+
+/// read students
+
+app.get("/students", async (req, res) => {
+  try {
+    let students = await Student.findOne({ enrollment_no: "gm6508" });
+    res.status(201).json({
+      success: true,
+      students,
+    });
+  } catch (err) {
+    res.json({
+      success: false,
+      message: err,
+    });
+  }
+});
+
+// get one student
+app.get("/student", async (req, res) => {
+  let student = req.body;
+  let enrolledStudent = await Student.findOne({
+    enrollment_no: student.enrollment_no,
+  });
+
+  if (enrolledStudent)
+    res.json({
+      success: true,
+      enrolledStudent,
+    });
+  else
+    res.json({
+      success: false,
+      message: "not found!",
+    });
+});
 // Start the server
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {
